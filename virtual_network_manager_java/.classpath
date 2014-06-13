@@ -2,5 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/SDN-ODL/VNM/New/virtual_network_manager_java/externalPackage/json-for-realz.jar.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
