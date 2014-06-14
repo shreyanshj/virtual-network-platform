@@ -3,6 +3,7 @@ package virtual_network_manager_java;
 public class Port {
 	private int no;
 	private String name;
+	private Switch swiitchObj;
 
 	public Port(int no, String name){
 		this.no = no;
@@ -23,6 +24,14 @@ public class Port {
 
 	public void setNo(int no) {
 		this.no = no;
+	}
+
+	public Switch getSwiitchObj() {
+		return swiitchObj;
+	}
+
+	public void setSwiitchObj(Switch swiitchObj) {
+		this.swiitchObj = swiitchObj;
 	}
 	
 }
