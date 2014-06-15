@@ -55,4 +55,12 @@ public class SwitchDB{
 		return port;
 	}
 		
+	/* get a switch agent URI from DB */
+	public String getAgentUri(Switch switchObj) {
+		String agentUri = null;
+		
+		return agentUri;
+	}
+	
+	
 }

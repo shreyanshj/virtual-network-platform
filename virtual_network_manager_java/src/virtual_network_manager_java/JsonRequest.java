@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -13,10 +14,12 @@ public class JsonRequest {
 
 	private JSONObject jsonObj;
 	private String jsonString;
+	private ResponseHandler<String> responseHandler;
 	
 	private JsonRequest(){
 		jsonObj = new JSONObject();
 		jsonString  = null;
+		responseHandler = null;
 	}
 	
 	public static JsonRequest getTepAddRequest(String address, Port port){
@@ -47,15 +50,26 @@ public class JsonRequest {
 		return request;
 	}
 	
-	public boolean send(String url){
+	/* set response handler which will be invoked while a HTTP response message is received */
+	public void setResponseHandler(ResponseHandler<String> responseHandler){
+		this.responseHandler = responseHandler;
+	}
+	
+	/* send the JSON request in the specified agent URI */ 
+	public boolean send(String agentUri){
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 		try {
-		    HttpPost request = new HttpPost(url);
+		    HttpPost request = new HttpPost(agentUri);
 		    StringEntity params = new StringEntity(jsonString);
 		    request.addHeader("content-type", "application/x-www-form-urlencoded");
 		    request.setEntity(params);
-		    httpClient.execute(request);
-		// handle response here...
+		    if(responseHandler != null) {
+		    	httpClient.execute(request, responseHandler);
+		    }
+		    else {
+		    	httpClient.execute(request);
+		    	throw new Exception("Response handler is not set for HTTP request");
+		    }
 		} catch (Exception ex) {
 		    // handle exception here
 			return false;
