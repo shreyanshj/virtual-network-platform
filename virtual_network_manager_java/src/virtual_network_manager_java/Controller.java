@@ -1,5 +1,6 @@
 package virtual_network_manager_java;
 
+/* class represent a controller in VNM */
 public class Controller {
 	/* Controller host-name */
 	private String controllerHost;
