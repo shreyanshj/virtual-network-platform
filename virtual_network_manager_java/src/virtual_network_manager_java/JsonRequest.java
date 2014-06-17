@@ -7,19 +7,18 @@ public abstract class JsonRequest {
 
 	protected JSONObject jsonObj;
 	protected String jsonString;
-	protected ResponseHandler<String> responseHandler;
-	protected UserData<?> usrData;
+	protected ResponseHandler<?> responseHandler;
+	protected UserData<?> usrData; /* tentative */
 	
+	public void setUsrData(UserData<?> usrData) {
+		this.usrData = usrData;
+	}
+
 	public JsonRequest(){
 		jsonObj = new JSONObject();
 		jsonString  = null;
 		responseHandler = null;
 		usrData = null;
-	}
-	
-	/* set response handler which will be invoked while a HTTP response message is received */
-	public void setResponseHandler(ResponseHandler<String> responseHandler){
-		this.responseHandler = responseHandler;
 	}
 	
 	/* send the JSON request in the specified agent URI */ 

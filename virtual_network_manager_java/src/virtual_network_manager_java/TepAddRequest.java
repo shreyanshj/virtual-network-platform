@@ -25,13 +25,16 @@ public class TepAddRequest extends JsonRequest {
 	
 	public boolean send(String agentUri) {
 		CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+		HttpTransactionComplete responseHandler = new HttpTransactionComplete();
+		responseHandler.setUsrData(usrData);
+		this.responseHandler = responseHandler;
 		try {
 		    HttpPost request = new HttpPost(agentUri);
 		    StringEntity params = new StringEntity(jsonString);
 		    request.addHeader("content-type", "application/x-www-form-urlencoded");
 		    request.setEntity(params);
-		    if(responseHandler != null) {
-		    	httpClient.execute(request, responseHandler);
+		    if(this.responseHandler != null) {
+		    	httpClient.execute(request, this.responseHandler);
 		    }
 		    else {
 		    	httpClient.execute(request);
