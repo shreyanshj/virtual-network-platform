@@ -14,7 +14,12 @@ public class Switch {
 	 * <Tentative> as db will be storing the data 
 	 * private HashMap<String, Port> ports; */
 	
-	public Switch(int dataPathId){
+	public Switch() {
+		dataPathId = 0;
+		controller = null;
+	}
+	
+	public Switch(int dataPathId) {
 		this.setDataPathId(dataPathId);
 	}
 

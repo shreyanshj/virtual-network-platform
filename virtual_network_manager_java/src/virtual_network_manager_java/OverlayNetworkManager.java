@@ -18,5 +18,9 @@ public class OverlayNetworkManager {
 		return configTransaction; 
 	}
 	
+	public ConfigTransaction addTransaction(Switch switchObj, int vnetId, int operation, VnmCallback callback, UserData userdata) {
+		ConfigTransaction transaction = new ConfigTransaction();
+		return transaction;
+	}                                                                                  
 	
 }
