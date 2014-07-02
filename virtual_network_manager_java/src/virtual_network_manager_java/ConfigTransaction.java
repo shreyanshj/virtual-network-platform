@@ -2,7 +2,7 @@ package virtual_network_manager_java;
 
 public class ConfigTransaction {
 	
-	private Switch switchObj;
+	private Switch switchObj; 
 	private int vni;
 	private int operation;
 	private int port_wait_count;
